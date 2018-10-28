@@ -58,6 +58,16 @@ function(x, ...)
   attr(x, "tzone")
 }
 
+`tzone<-.default` <-
+function(x, value)
+{
+  if (!is.null(value)) {
+    tzone <- as.character(value)
+  }
+  attr(x, "tzone") <- value
+  x
+}
+
 tzone.xts <-
 function(x, ...)
 {
