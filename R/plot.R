@@ -144,6 +144,7 @@ plot.xts <- function(x,
                      grid.col="darkgray",
                      labels.col="#333333",
                      format.labels=TRUE,
+                     range.label=FALSE,
                      grid2="#F5F5F5",
                      legend.loc=NULL){
   
@@ -381,10 +382,17 @@ plot.xts <- function(x,
   }
   
   # add main title and date range of data
+  if(range.label==TRUE) {
   text.exp <- c(expression(text(xlim[1],0.5,main,font=2,col=theme$labels,offset=0,cex=1.1,pos=4)),
                 expression(text(xlim[2],0.5,
                                 paste(start(xdata[xsubset]),end(xdata[xsubset]),sep=" / "),
                                 col=theme$labels,adj=c(0,0),pos=2)))
+  } else {
+  text.exp <- c(expression(text(xlim[1],0.5,main,font=2,col=theme$labels,offset=0,cex=1.1,pos=4)),
+                expression(text(xlim[2],0.5,
+                                paste(""),
+                                col=theme$labels,adj=c(0,0),pos=2)))  
+  }
   cs$add(text.exp, env=cs$Env, expr=TRUE)
   
   cs$set_frame(2)
